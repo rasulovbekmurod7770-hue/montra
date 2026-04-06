@@ -4,7 +4,7 @@ class PrimaryButton extends StatelessWidget {
   final String title;
   final Color backgroundColor;
   final VoidCallback? onPressed;
-  final Color foregroundColor;
+  final Color? foregroundColor;
   final TextStyle? textStyle;
   final double height;
   final double width;
@@ -29,6 +29,7 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),

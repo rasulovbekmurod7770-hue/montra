@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:montra/features/auth/presentation/pages/launch_screen.dart';
+import 'package:montra/features/auth/presentation/pages/onBoarding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       ),
       // debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
-      home: LaunchScreen(),
+      home: Onboarding(),
     );
   }
 }
