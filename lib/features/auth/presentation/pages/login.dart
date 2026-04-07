@@ -4,6 +4,7 @@ import 'package:montra/core/widgets/primary_button.dart';
 import 'package:montra/features/auth/data/provider/validator_passwrod.dart';
 import 'package:montra/features/auth/presentation/pages/forgot_password.dart';
 import 'package:montra/features/auth/presentation/pages/sign_up.dart';
+import 'package:montra/features/home/presentation/pages/home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -84,7 +85,7 @@ class _LoginState extends State<Login> {
               foregroundColor: Colors.white,
               height: 56,
               width: .infinity,
-              onPressed: () {},
+              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => Home(),));},
             ),
             const SizedBox(height: 33),
             Center(

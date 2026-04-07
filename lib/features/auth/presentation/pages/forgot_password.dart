@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:montra/core/constants/app_colors.dart';
 import 'package:montra/core/widgets/primary_button.dart';
+import 'package:montra/features/auth/presentation/pages/email_sent.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -59,7 +60,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               height: 56,
               width: .infinity,
               onPressed: () {
-                
+                Navigator.push(context, MaterialPageRoute(builder: (context) => EmailSent(),));
               },
             ),
           ],

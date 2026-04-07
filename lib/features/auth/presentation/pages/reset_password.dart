@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:montra/core/constants/app_colors.dart';
 import 'package:montra/core/widgets/primary_button.dart';
 import 'package:montra/features/auth/data/provider/validator_passwrod.dart';
+import 'package:montra/features/auth/presentation/pages/login.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -101,7 +102,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               foregroundColor: Colors.white,
               height: 56,
               width: .infinity,
-              onPressed: () {},
+              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),));},
             ),
           ],
         ),
