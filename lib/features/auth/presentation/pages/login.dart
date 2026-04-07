@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:montra/core/constants/app_colors.dart';
 import 'package:montra/core/widgets/primary_button.dart';
-import 'package:montra/features/auth/presentation/pages/login.dart';
+import 'package:montra/features/auth/presentation/pages/forgot_password.dart';
+import 'package:montra/features/auth/presentation/pages/sign_up.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _LoginState extends State<Login> {
   TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
-  bool isCheck = false;
+
   bool observePassword = true;
 
   @override
@@ -22,17 +23,15 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text(
-          "Sign up",
-          style: TextStyle(fontSize: 18, fontWeight: .w600),
-        ),
+        title: Text("Login", style: TextStyle(fontSize: 18, fontWeight: .w600)),
       ),
       body: SingleChildScrollView(
         scrollDirection: .vertical,
-        padding: const .symmetric(horizontal: 16),
+        padding: const .all(16),
         child: Column(
+          crossAxisAlignment: .start,
           children: [
             const SizedBox(height: 56),
             TextFormField(
@@ -47,20 +46,6 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             const SizedBox(height: 24),
-            TextFormField(
-              controller: emailController,
-
-              decoration: InputDecoration(
-                hintText: "Email",
-                hintStyle: TextStyle(fontSize: 18, fontWeight: .w400),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: Colors.grey),
-                  borderRadius: .circular(16),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
             TextFormField(
               controller: passwordController,
               obscureText: observePassword,
@@ -93,28 +78,9 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
             ),
-
-            Row(
-              children: [
-                Checkbox(
-                  activeColor: AppColors.primaryColor,
-                  value: isCheck,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isCheck = value!;
-                    });
-                  },
-                ),
-
-                Text(
-                  "By signing up, you agree to the Terms of \nService and Privacy Policy",
-                  style: TextStyle(fontSize: 14, fontWeight: .w500),
-                ),
-              ],
-            ),
-            const SizedBox(height: 27),
+            const SizedBox(height: 40),
             PrimaryButton(
-              title: "Sign up",
+              title: "Login",
               textStyle: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
@@ -126,59 +92,42 @@ class _SignUpState extends State<SignUp> {
               width: .infinity,
               onPressed: () {},
             ),
-            const SizedBox(height: 12),
-            Text(
-              "Or with",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: .w700,
-                color: Color(0xFF91919F),
-              ),
-            ),
-            const SizedBox(height: 12),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                padding: const .symmetric(horizontal: 62),
-                width: .infinity,
-                height: 56,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  border: .all(width: 1, color: Colors.black),
-                  borderRadius: .circular(16),
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.facebook, size: 32),
-                    Text(
-                      "Sign Up with Facebook",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: .w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
+            const SizedBox(height: 33),
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ForgotPassword()),
+                  );
+                },
+                child: Text(
+                  "Forgot Password?",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: .w600,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 19),
+            const SizedBox(height: 38),
             Row(
               mainAxisAlignment: .center,
               children: [
                 Text(
-                  "Already have an account?",
+                  "Don’t have an account yet? ",
                   style: TextStyle(fontSize: 16, fontWeight: .w500),
                 ),
-                TextButton(
-                  onPressed: () {
+                InkWell(
+                  onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Login()),
+                      MaterialPageRoute(builder: (context) => SignUp()),
                     );
                   },
                   child: Text(
-                    "Login",
+                    "Sign up",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: .w500,

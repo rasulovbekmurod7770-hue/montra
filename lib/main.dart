@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:montra/features/auth/presentation/pages/forgot_password.dart';
 import 'package:montra/features/auth/presentation/pages/launch_screen.dart';
+import 'package:montra/features/auth/presentation/pages/login.dart';
 import 'package:montra/features/auth/presentation/pages/onBoarding.dart';
 import 'package:montra/features/auth/presentation/pages/sign_up.dart';
 
@@ -31,12 +33,12 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: .fromSeed(seedColor: Colors.white),
         
       ),
       // debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
-      home: SignUp(),
+      home: ForgotPassword(),
     );
   }
 }
