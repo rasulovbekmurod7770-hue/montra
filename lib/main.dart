@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:montra/features/auth/presentation/pages/email_sent.dart';
 import 'package:montra/features/auth/presentation/pages/forgot_password.dart';
 import 'package:montra/features/auth/presentation/pages/launch_screen.dart';
 import 'package:montra/features/auth/presentation/pages/login.dart';
 import 'package:montra/features/auth/presentation/pages/onBoarding.dart';
+import 'package:montra/features/auth/presentation/pages/reset_password.dart';
 import 'package:montra/features/auth/presentation/pages/sign_up.dart';
 
 void main() {
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       ),
       // debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
-      home: ForgotPassword(),
+      home: ResetPassword(),
     );
   }
 }

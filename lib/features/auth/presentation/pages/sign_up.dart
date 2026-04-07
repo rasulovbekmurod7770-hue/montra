@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:montra/core/constants/app_colors.dart';
 import 'package:montra/core/widgets/primary_button.dart';
+import 'package:montra/features/auth/data/provider/validator_passwrod.dart';
 import 'package:montra/features/auth/presentation/pages/login.dart';
 
 class SignUp extends StatefulWidget {
@@ -65,14 +66,7 @@ class _SignUpState extends State<SignUp> {
               controller: passwordController,
               obscureText: observePassword,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Password cannot be empty';
-                } else if (value.length < 6) {
-                  return 'Password must be at least 6 characters';
-                }
-                return null;
-              },
+              validator: passwordValidator, 
               decoration: InputDecoration(
                 hintText: "Password",
                 hintStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
