@@ -117,6 +117,11 @@ class _LoginState extends State<Login> {
                           behavior: SnackBarBehavior.floating,
                         ),
                       );
+                    } else {
+                       Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => const Home()),
+                      );
                     }
                   },
                 );

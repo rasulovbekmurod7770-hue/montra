@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home:
       ChangeNotifierProvider(create: (context) => AuthProvider(),
-      child: SignUp(),),
+      child: Login(),),
     );
   }
 }
