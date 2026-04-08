@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:montra/core/constants/app_colors.dart';
 import 'package:montra/core/widgets/primary_button.dart';
+import 'package:montra/features/auth/data/models/login_request.dart';
+import 'package:montra/features/auth/data/provider/auth_provider.dart';
 import 'package:montra/features/auth/data/provider/validator_passwrod.dart';
 import 'package:montra/features/auth/presentation/pages/forgot_password.dart';
 import 'package:montra/features/auth/presentation/pages/sign_up.dart';
 import 'package:montra/features/home/presentation/pages/home.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -14,11 +17,18 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
 
   bool observePassword = true;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +47,9 @@ class _LoginState extends State<Login> {
           children: [
             const SizedBox(height: 56),
             TextFormField(
-              controller: nameController,
+              controller: emailController,
               decoration: InputDecoration(
-                hintText: "Name",
+                hintText: "Email",
                 hintStyle: TextStyle(fontSize: 18, fontWeight: .w400),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(width: 1, color: Colors.grey),
@@ -52,7 +62,7 @@ class _LoginState extends State<Login> {
               controller: passwordController,
               obscureText: observePassword,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: passwordValidator, 
+              validator: passwordValidator,
               decoration: InputDecoration(
                 hintText: "Password",
                 hintStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
@@ -74,18 +84,29 @@ class _LoginState extends State<Login> {
               ),
             ),
             const SizedBox(height: 40),
-            PrimaryButton(
-              title: "Login",
-              textStyle: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: .w600,
-              ),
-              backgroundColor: AppColors.primaryColor,
-              foregroundColor: Colors.white,
-              height: 56,
-              width: .infinity,
-              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => Home(),));},
+
+            Consumer<AuthProvider>(
+              builder: (context, provider, _) {
+                return PrimaryButton(
+                  title: "Login",
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: .w600,
+                  ),
+                  backgroundColor: AppColors.primaryColor,
+                  foregroundColor: Colors.white,
+                  height: 56,
+                  width: .infinity,
+                  onPressed: () {
+                    final request = LoginRequest(
+                      password: passwordController.text.trim(),
+                      email: emailController.text.trim(),
+                    );
+                    context.read<AuthProvider>().login(request);
+                  },
+                );
+              },
             ),
             const SizedBox(height: 33),
             Center(
