@@ -98,12 +98,26 @@ class _LoginState extends State<Login> {
                   foregroundColor: Colors.white,
                   height: 56,
                   width: .infinity,
-                  onPressed: () {
+                  onPressed: () async {
                     final request = LoginRequest(
                       password: passwordController.text.trim(),
                       email: emailController.text.trim(),
                     );
-                    context.read<AuthProvider>().login(request);
+
+                    await context.read<AuthProvider>().login(request);
+
+                    if (!mounted) return;
+
+                    final error = context.read<AuthProvider>().loginerror;
+                    if (error != null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(error),
+                          backgroundColor: Colors.red,
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
+                    }
                   },
                 );
               },

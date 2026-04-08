@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       // debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
       home: ChangeNotifierProvider(create: (context) => AuthProvider(),
-      child: Login(),),
+      child: SignUp(),),
     );
   }
 }

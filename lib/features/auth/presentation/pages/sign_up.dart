@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:montra/core/constants/app_colors.dart';
 import 'package:montra/core/widgets/primary_button.dart';
+import 'package:montra/features/auth/data/models/sign_up_request.dart';
+import 'package:montra/features/auth/data/provider/auth_provider.dart';
 import 'package:montra/features/auth/data/provider/validator_passwrod.dart';
 import 'package:montra/features/auth/presentation/pages/login.dart';
+import 'package:montra/features/home/presentation/pages/home.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -17,6 +22,14 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordController = TextEditingController();
   bool isCheck = false;
   bool observePassword = true;
+
+   @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +131,34 @@ class _SignUpState extends State<SignUp> {
               foregroundColor: Colors.white,
               height: 56,
               width: .infinity,
-              onPressed: () {},
+              onPressed: () async {
+                    final request = SignUpRequest(
+                      name: nameController.text.trim(),
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                    );
+
+                    await context.read<AuthProvider>().signUp(request);
+
+                    if (!mounted) return;
+
+                    final error = context.read<AuthProvider>().signUpError;
+                    if (error != null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(error),
+                          backgroundColor: Colors.red,
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
+                    } else {
+                      
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => const Home()),
+                      );
+                    }
+                  },
             ),
             const SizedBox(height: 12),
             Text(
