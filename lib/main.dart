@@ -43,9 +43,9 @@ class MyApp extends StatelessWidget {
       ),
       // debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
-      home:Home()
-      // ChangeNotifierProvider(create: (context) => AuthProvider(),
-      // child: ForgotPassword(),),
+      home:
+      ChangeNotifierProvider(create: (context) => AuthProvider(),
+      child: SignUp(),),
     );
   }
 }
