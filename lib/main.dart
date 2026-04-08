@@ -7,6 +7,7 @@ import 'package:montra/features/auth/presentation/pages/login.dart';
 import 'package:montra/features/auth/presentation/pages/onBoarding.dart';
 import 'package:montra/features/auth/presentation/pages/reset_password.dart';
 import 'package:montra/features/auth/presentation/pages/sign_up.dart';
+import 'package:montra/features/home/presentation/pages/home.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -42,8 +43,9 @@ class MyApp extends StatelessWidget {
       ),
       // debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
-      home: ChangeNotifierProvider(create: (context) => AuthProvider(),
-      child: ForgotPassword(),),
+      home:Home()
+      // ChangeNotifierProvider(create: (context) => AuthProvider(),
+      // child: ForgotPassword(),),
     );
   }
 }
